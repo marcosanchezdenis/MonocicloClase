@@ -11,7 +11,7 @@ module mips(
 wire memtoreg, alusrc, regdst,regwrite, jump, pcsrc, zero;
 wire [2:0] alucontrol;
 
-
+// este es un multicilo
 controller c (
     .op(instr[31:26]), 
     .funct(instr[5:0]), 
