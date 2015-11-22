@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module SlideDev(
-		input wire clk, reset, w3, 
+		input wire clk, reset, we3, 
 		input wire [31:0]d,
 		output reg [31:0]q 
 );

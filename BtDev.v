@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 module BtDev(
-	input wire clk,reset, w4,
+	input wire clk,reset, we4,bt,
 	input wire [31:0]d,
 	output reg [31:0]q
 );
@@ -8,7 +8,7 @@ module BtDev(
 		if(reset) begin
 			q<=32'd0;
 		end else begin 
-			if(we3) begin
+			if(we4) begin
 				q<=d;				
 			end 
 		end

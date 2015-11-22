@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    12:16:29 11/18/2015 
+// Create Date:    14:56:01 10/19/2015 
 // Design Name: 
-// Module Name:    mux4 
+// Module Name:    shiftreg_serialin 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,26 +18,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module mux4(
-	input wire [31:0]a,b,c,d,e,f,g,h,
-	input wire [1:0]select,
-	output reg [31:0] y
- );
-
-always@(*) begin 
-	case(select) 
-		3'b000: y = a;
-		3'b001: y = b;
-		3'b010: y = c;
-		3'b011: y = d;
-		3'b100: y = e;
-		3'b101: y = f;
-		3'b110: y = g;
-		3'b111: y = h;
-		default: y = 32'dx;
-	endcase
-end	 
-	 
-
-
+module shiftreg_serialin #(parameter N = 8)(
+	input wire clk,reset,
+	input wire d,
+	output wire [N-1:0] sout);
+		reg [N-1:0] q;
+	always @(posedge clk, posedge reset) begin
+		if (reset) begin
+			q <= 0;
+		end else begin 			
+				q <= {q[N-2:0], d};			
+		end
+	end
+	assign sout = q;
 endmodule

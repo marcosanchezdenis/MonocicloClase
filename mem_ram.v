@@ -3,16 +3,17 @@
 
 module mem_ram(
 	input wire clk,
-	input wire [3:0] addr_rw,
+	input wire [7:0] addr_rw,
 	input wire we,
 	input wire [31:0] data_w,
 	output wire [31:0] data_r
 );
-	reg [31:0] ram_array [0:15];
 
-	initial begin
+	reg [31:0] ram_array [0:256];
+
+	/*initial begin
 		$readmemh("data.txt", ram_array, 0, 15);
-	end
+	end*/
 	
 	always @ (posedge clk) begin
 		if (we) begin

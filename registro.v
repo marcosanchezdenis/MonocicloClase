@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    12:16:29 11/18/2015 
+// Create Date:    22:32:17 11/20/2015 
 // Design Name: 
-// Module Name:    mux4 
+// Module Name:    registro 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,26 +18,21 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module mux4(
-	input wire [31:0]a,b,c,d,e,f,g,h,
-	input wire [1:0]select,
-	output reg [31:0] y
- );
 
-always@(*) begin 
-	case(select) 
-		3'b000: y = a;
-		3'b001: y = b;
-		3'b010: y = c;
-		3'b011: y = d;
-		3'b100: y = e;
-		3'b101: y = f;
-		3'b110: y = g;
-		3'b111: y = h;
-		default: y = 32'dx;
-	endcase
-end	 
-	 
-
-
+module registro_transmisor (
+	input wire clk,
+	input wire reset,
+	input wire enable,
+	input wire [31:0]d,
+	output reg [31:0]q
+);
+always@(posedge clk or posedge reset ) begin
+	if (reset) begin 
+		q<=32'd0;
+	end else begin 
+		if(enable) begin 
+			q<=d;
+		end 		
+	end
+end
 endmodule

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    12:16:29 11/18/2015 
+// Create Date:    15:07:40 10/19/2015 
 // Design Name: 
-// Module Name:    mux4 
+// Module Name:    contador 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,26 +18,18 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module mux4(
-	input wire [31:0]a,b,c,d,e,f,g,h,
-	input wire [1:0]select,
-	output reg [31:0] y
- );
-
-always@(*) begin 
-	case(select) 
-		3'b000: y = a;
-		3'b001: y = b;
-		3'b010: y = c;
-		3'b011: y = d;
-		3'b100: y = e;
-		3'b101: y = f;
-		3'b110: y = g;
-		3'b111: y = h;
-		default: y = 32'dx;
-	endcase
-end	 
-	 
-
-
+	module contador(
+	input wire clk,
+	input wire reset,
+	output wire [31:0]y
+    );
+	reg[31:0]q;
+	always@(posedge clk) begin
+		if( reset )  begin 
+			q= 32'd0;
+		end else begin
+			q= q + 32'd1; 
+		end
+	end 
+	assign y= q;
 endmodule

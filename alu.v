@@ -5,7 +5,7 @@
 module alu(
 	input wire [31:0]scrA,	
 	input wire [31:0]scrB,	
-	input wire [3:0]operation,		
+	input wire [2:0]operation,		
 	output reg [31:0]ALUResult,
 	output wire zero		
 );
